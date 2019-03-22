@@ -1,0 +1,98 @@
+create procedure --RJM
+"_SRM"."ServiceRequestItemsExport"( 
+  in @NodeId char(512) default null,
+  in @OrderBy char(512) default null,
+  in @UsePaging bit default null,
+  in @RowsPerPage integer default null,
+  in @PageToDisplay integer default null ) 
+result( 
+  "RowId" char(1024),
+  "ServiceRequestId" integer,
+  "ServiceRequestParentId" integer,
+  "OriginalServiceRequestId" integer,
+  "ServiceRequestNestedLevel" tinyint,
+  "ServiceRequestExternalId" char(20),
+  "ServiceRequestType" char(10),
+  "TitleBarDisplay" char(128),
+  "ServiceRequestDate" date,
+  "ServiceRequestOriginator" integer,
+  "ServiceRequestOriginatorName" char(256),
+  "OfficeCodeId" integer,
+  "OfficeCode" char(10),
+  "AssignedToUserId" integer,
+  "AssignedToUserFullName" char(256),
+  "ServiceRequestStatus" char(25),
+  "ServiceRequestPriority" tinyint,
+  "ServiceRequestPriorityDisplay" char(25),
+  "ServiceRequestTitle" char(128),
+  "ServiceRequestPrelimDueDate" date,
+  "ServiceRequestFinalDueDate" date,
+  "PlannedStartDate" date,
+  "PlannedEndDate" date,
+  "PercentComplete" integer,
+  "PercentHoursComplete" integer,
+  "PercentTimeComplete" integer,
+  "EstimatedRemainingHours" numeric(12,2),
+  "ActualHoursWorked" numeric(12,2),
+  "EstimatedTotalHours" numeric(12,2),
+  "MandatoryMinReportDays" integer,
+  "TransaltNumber" char(25),
+  "TransaltId" integer,
+  "PrimaryPOCID" integer,
+  "PrimaryPOCName" char(256),
+  "PrimaryPOCEmail" varchar(500),
+  "PrimaryPOCPhone" char(20),
+  "AltPOCID" integer,
+  "AltPOCName" char(256),
+  "AltPOCEmail" varchar(500),
+  "AltPOCPhone" char(20),
+  "ServiceRequestDeliverables" long varchar,
+  "ServiceRequestCategories" long varchar,
+  "ServiceRequestRequiredApprovals" long varchar,
+  "ServiceRequestRequiredDetails" long varchar,
+  "VesselIds" long varchar,
+  "VesselNames" long varchar,
+  "ServiceRequestParentExternalId" char(20),
+  "OriginalServiceRequestExternalId" char(20),
+  "LastMileStone" char(80),
+  "ActiveSequenceNumber" tinyint,
+  "LastProgressUpdate" char(16),
+  "LastProgressComment" long varchar,
+  "TotalRows" integer,
+  "CurrentPage" integer,
+  "TotalPages" integer,
+  "Customer" long varchar,
+  "ShipClass" long varchar,
+  "SubmittalDate" date,
+  "AcceptedDate" date,
+  "CompleteDate" date,
+  "PlannedDuration" integer,
+  "ActualDuration" integer,
+  "TransaltStatus" char(20),
+  "N04711Review" char(20),
+  "N04721Review" char(20),
+  "N04722Review" char(20),
+  "N04723Review" char(20),
+  "N04725Review" char(20),
+  "N04733Review" char(20),
+  "N04726Review" char(20),
+  "N04641Review" char(20),
+  "N04644Review" char(20),
+  "N04645Review" char(20) ) 
+begin
+  /*
+2017-01-08 AJLF Added SubmittalDate, AcceptedDate, and CompleteDate
+2017-10-26 AJLF Added Review Status Columns
+2017-12-21 RJM Aligned result sets with SRM.ServiceRequestItems, _SRM.ServiceRequestItems
+*/
+  set @UsePaging = 1;
+  set @RowsPerPage = 65500;
+  set @PageToDisplay = 1;
+  set @NodeId = "SRM"."SavedNodeIdSelect"();
+  call "SRM"."ServiceRequestItems"(
+  @NodeId,
+  @OrderBy,
+  @UsePaging,
+  @RowsPerPage,
+  @PageToDisplay)
+end

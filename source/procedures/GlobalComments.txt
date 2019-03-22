@@ -1,0 +1,12 @@
+PartNumber|This is the Part Number
+Success|Bit indicating Success
+ErrorMessage|The error message
+EquipmentRowId|The equipment row ID
+EquipmentDescription|The description of the equipment
+EquipmentId|The equipment ID
+OrderBy|String which governs the order by in the sql
+RowId|The row ID
+VesselName|The name of the vessel
+Billet|The Billet
+EquipmentRowIds|This is the equipment row id
+EncodedEquipmentRowId|This is the encoded equipment row id

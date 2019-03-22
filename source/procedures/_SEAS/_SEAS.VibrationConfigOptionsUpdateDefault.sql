@@ -1,0 +1,4 @@
+create procedure "_SEAS"."VibrationConfigOptionsUpdateDefault"( in @GraphType long varchar,in @Location long varchar,in @Tests long varchar,in @FreqRange long varchar,in @AxisSelection long varchar,in @ShowFreq long varchar,in @ShowAvg long varchar,in @ShowExceedance long varchar,in @AmpAxis long varchar,in @AmpScaling long varchar,in @AmpUnits long varchar,in @SubUnits long varchar,in @AmpType long varchar,in @FreqUnits long varchar,in @FreqScaling long varchar,in @AmpMin long varchar,in @AmpMax long varchar,in @FreqMin long varchar,in @FreqMax long varchar,in @PreviousTestOverlayed long varchar ) 
+begin
+  call "SEAS"."VibrationConfigOptionsUpdateDefault"(@GraphType,@Location,@Tests,@FreqRange,@AxisSelection,@ShowFreq,@ShowAvg,@ShowExceedance,@AmpAxis,@AmpScaling,@AmpUnits,@SubUnits,@AmpType,@FreqUnits,@FreqScaling,@AmpMin,@AmpMax,@FreqMin,@FreqMax,@PreviousTestOverlayed)
+end
